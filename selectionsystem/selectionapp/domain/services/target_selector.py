@@ -63,6 +63,7 @@ class SelectTargetService:
                     break
 
                 filter_protocols.append(protocol)
+                break
 
             distance_protocol = protocol
 
