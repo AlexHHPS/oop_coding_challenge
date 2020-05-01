@@ -20,5 +20,5 @@ from selectionsystem.selectionapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('radar/', views.RadarSelection.as_view())
+    path('radar', views.RadarSelection.as_view())
 ]
