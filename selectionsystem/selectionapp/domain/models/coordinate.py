@@ -13,5 +13,5 @@ class Coordinate(Model):
         self.x = data["x"]
         self.y = data["y"]
 
-    def to_json(self):
+    def to_dict(self):
         return dict(x=self.x, y=self.y)

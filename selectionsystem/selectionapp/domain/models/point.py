@@ -27,7 +27,6 @@ class Point(Model):
     def has_allies(self):
         return self.allies is not None
 
-    @property
     def distance_from_me(self):
         return math.sqrt(
             self.coordinates.x ** 2 + self.coordinates.y ** 2

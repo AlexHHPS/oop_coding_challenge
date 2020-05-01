@@ -6,12 +6,15 @@ from selectionsystem.selectionapp.use_cases.select_next_target import SelectNext
 
 
 class RadarSelection(APIView):
-    """
-    List all snippets, or create a new snippet.
-    """
     def get(self, request, format=None):
-        return Response(BufferError(), status=status.HTTP_400_BAD_REQUEST)
+        return Response("Operation not supported", status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def post(self, request, format=None):
+        if request.data.get("protocols") is None:
+            return Response("Field protocols is missing", status=status.HTTP_400_BAD_REQUEST)
+
+        if request.data.get("scan") is None:
+            return Response("Scan protocols is missing", status=status.HTTP_400_BAD_REQUEST)
+
         result = SelectNextTargetUseCase(request.data).execute()
-        return Response(result.to_json(), status=status.HTTP_200_OK)
+        return Response(result.to_dict(), status=status.HTTP_200_OK)

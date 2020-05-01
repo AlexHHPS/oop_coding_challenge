@@ -28,7 +28,7 @@ class ClosestEnemiesProtocol(DistanceProtocol):
         self.prev_distance = 1000
 
     def check_distance(self, point: Point) -> bool:
-        new_distance = point.distance_from_me
+        new_distance = point.distance_from_me()
 
         if new_distance > 100:
             return False
@@ -43,7 +43,7 @@ class FurthestEnemiesProtocol(DistanceProtocol):
         self.prev_distance = 0
 
     def check_distance(self, point: Point) -> bool:
-        new_distance = point.distance_from_me
+        new_distance = point.distance_from_me()
 
         if new_distance > 100:
             return False

@@ -18,4 +18,3 @@ class Order(Model):
 
         for point in data["scan"]:
             self.points.append(Point(point))
-
