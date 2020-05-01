@@ -17,4 +17,7 @@ class Order(Model):
             self.protocols.append(ProtocolFactory().create(protocol))
 
         for point in data["scan"]:
-            self.points.append(Point(point))
+            new_point = Point(point)
+
+            if new_point.distance_from_me() <= 100:
+                self.points.append(Point(point))
