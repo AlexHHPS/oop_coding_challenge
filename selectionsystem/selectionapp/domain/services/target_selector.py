@@ -18,9 +18,8 @@ class SelectTargetService:
         battlefield = self.order.points
 
         for battle_position in battlefield:
-            for protocol in restrictive_protocols:
-                if not protocol.check_applies(battle_position):
-                    break
+            if self.__check_restrictive_protocol_affects(restrictive_protocols, battle_position):
+                continue
 
             value = self.__calculate_value_filters(battle_position, filter_protocols)
             if value > self.target.value:
@@ -42,7 +41,7 @@ class SelectTargetService:
 
         return self.target.selected_point.coordinates
 
-    def __calculate_value_filters(self, battle_position, filter_protocols):
+    def __calculate_value_filters(self, battle_position, filter_protocols) -> int:
         value = 0
 
         for filter_protocol in filter_protocols:
@@ -50,6 +49,11 @@ class SelectTargetService:
                 value += 1
 
         return value
+
+    def __check_restrictive_protocol_affects(self, restrictive_protocols, battle_position) -> bool:
+        for protocol in restrictive_protocols:
+            if not protocol.check_applies(battle_position):
+                return True
 
     def __split_protocols(self):
         restrictive_protocols = list()
@@ -60,10 +64,10 @@ class SelectTargetService:
             if isinstance(protocol, FilterProtocol):
                 if protocol.restrictive:
                     restrictive_protocols.append(protocol)
-                    break
+                    continue
 
                 filter_protocols.append(protocol)
-                break
+                continue
 
             distance_protocol = protocol
 
