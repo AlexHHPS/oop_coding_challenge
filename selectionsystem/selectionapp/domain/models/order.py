@@ -20,4 +20,4 @@ class Order(Model):
             new_point = Point(point)
 
             if new_point.distance_from_me() <= 100:
-                self.points.append(Point(point))
+                self.points.append(new_point)
