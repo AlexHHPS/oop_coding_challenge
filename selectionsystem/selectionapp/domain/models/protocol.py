@@ -27,7 +27,6 @@ class ClosestEnemiesProtocol(DistanceProtocol):
     def __init__(self):
         self.prev_distance = 1000
 
-    @abstractmethod
     def check_distance(self, point: Point) -> bool:
         new_distance = point.distance_from_me
 
@@ -43,7 +42,6 @@ class FurthestEnemiesProtocol(DistanceProtocol):
     def __init__(self):
         self.prev_distance = 0
 
-    @abstractmethod
     def check_distance(self, point: Point) -> bool:
         new_distance = point.distance_from_me
 
