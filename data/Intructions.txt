@@ -5,5 +5,3 @@ Steps to run the code:
 2. Install all requirements via pip -r.
 3. Run `python manage.py runserver 8888` from root folder.
 4. Go to data folder and run the test script.
-
-Think twice if you are a Windows user, it's an odissey :)
